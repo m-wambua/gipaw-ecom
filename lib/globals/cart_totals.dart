@@ -1,0 +1,27 @@
+
+import 'package:flutter/material.dart';
+import 'package:flutter_application_1/globals/products_card.dart';
+
+class CartTotals extends StatelessWidget {
+  final ShoppingCart shoppingCart;
+
+  CartTotals({Key? key, required this.shoppingCart}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double total = shoppingCart.items.fold(0, (sum, product) => sum + product.price);
+
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            'Total: \$${total.toStringAsFixed(2)}',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+    );
+  }
+}
