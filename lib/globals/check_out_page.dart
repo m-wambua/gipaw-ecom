@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/globals/products_card.dart';
 
 class CheckoutPage extends StatelessWidget {
-  final double totalPrice;
+  final Range totalPrice;
+  
   final List<Product> orderedItems;
 
   CheckoutPage({Key? key, required this.totalPrice, required this.orderedItems})
@@ -20,7 +21,7 @@ class CheckoutPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('Total Price: \$${totalPrice.toStringAsFixed(2)}'),
+          Text('Total Price: \$${totalPrice.start.toStringAsFixed(2)}-\$${totalPrice.end.toStringAsFixed(2)}'),
           SizedBox(height: 16),
           Text('Ordered Items:'),
           Expanded(
@@ -30,7 +31,7 @@ class CheckoutPage extends StatelessWidget {
                 return ListTile(
                   title: Text(orderedItems[index].name),
                   subtitle: Text(
-                    '\$${orderedItems[index].price.toStringAsFixed(2)}',
+                    '\$${orderedItems[index].price.start.toStringAsFixed(2)}-\$${orderedItems[index].price.end.toStringAsFixed(2)}',
                   ),
                 );
               },

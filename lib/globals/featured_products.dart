@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/globals/products_card.dart';
 
 class RowOfFeaturedProducts extends StatelessWidget {
-  final ShoppingCart shoppingCart; // You need to provide a ShoppingCart instance
+  final ShoppingCart
+      shoppingCart; // You need to provide a ShoppingCart instance
 
-  RowOfFeaturedProducts({required this.shoppingCart});
+  // List of indivudual products for this row
+  final List<Product> products;
+
+  RowOfFeaturedProducts({required this.shoppingCart, required this.products});
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +16,13 @@ class RowOfFeaturedProducts extends StatelessWidget {
       height: 250,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 9, // Adjust this based on the number of FeaturedProducts per row
+        itemCount:
+            products.length, // Adjust this based on the number of FeaturedProducts per row
         itemBuilder: (context, index) {
           return ProductCard(
-            product: Product(name: 'Product $index', price: 19.99),
+            product: products[index],
             shoppingCart: shoppingCart,
-             // Pass the ShoppingCart instance
+            // Pass the ShoppingCart instance
           );
         },
       ),

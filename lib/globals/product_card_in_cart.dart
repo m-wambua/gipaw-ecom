@@ -40,7 +40,7 @@ class ProductCardInCart extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    '\$${product.price.toStringAsFixed(2)}',
+                    '\$${product.price.start.toStringAsFixed(2)}-\$${product.price.end.toStringAsFixed(2)}',
                     style: const TextStyle(fontSize: 14, color: Colors.green),
                   ),
                   const SizedBox(

@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
 
 class Product {
   final String name;
-  final double price;
+  final Range price;
+  final String ImageUrl;
 
-  Product({required this.name, required this.price});
+  Product({required this.name, required this.price, required this.ImageUrl});
+}
+
+class Range {
+  final double start;
+  final double end;
+  Range({required this.start, required this.end});
 }
 
 class CounterNotifier extends ChangeNotifier {
@@ -43,12 +51,14 @@ class ShoppingCart {
     print('Item removed from the cart. Updated item count: $_itemCount');
   }
 
-  double calculatedTotalPrice() {
-    double totalPrice = 0.0;
+  Range calculatedTotalPrice() {
+    double mintotalPrice = 0.0;
+    double maxtotalPrice = 0.0;
     for (var product in items) {
-      totalPrice += product.price;
+      mintotalPrice += product.price.start;
+      maxtotalPrice += product.price.end;
     }
-    return totalPrice;
+    return Range(start:mintotalPrice, end:maxtotalPrice);
   }
 }
 
@@ -74,7 +84,11 @@ class ProductCard extends StatelessWidget {
             AspectRatio(
               aspectRatio: 4 / 3,
               child: Container(
-                color: Colors.grey, // Placeholder for product image
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: NetworkImage(product.ImageUrl),
+                        fit: BoxFit.cover)),
+                // Placeholder for product image
               ),
             ),
             Padding(
@@ -89,7 +103,7 @@ class ProductCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    '\$${product.price.toStringAsFixed(2)}',
+                    '\$${product.price.start.toStringAsFixed(2)}-\$${product.price.end.toStringAsFixed(2)}',
                     style: const TextStyle(fontSize: 14, color: Colors.green),
                   ),
                   const SizedBox(

@@ -29,22 +29,17 @@ class MyCartPage extends StatelessWidget {
                 },
               ),
             ),
-            
-              
-                CartTotals(shoppingCart: shoppingCart),
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CheckoutPage(
-                                  totalPrice:
-                                      shoppingCart.calculatedTotalPrice(),
-                                  orderedItems: shoppingCart.items)));
-                    },
-                    child: const Text('Proceed to Checkout'))
-              
-            
+            CartTotals(shoppingCart: shoppingCart),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CheckoutPage(
+                              totalPrice: shoppingCart.calculatedTotalPrice(),
+                              orderedItems: shoppingCart.items)));
+                },
+                child: const Text('Proceed to Checkout'))
           ],
         ));
   }
@@ -88,7 +83,7 @@ class ProductCardInCart extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    '\$${product.price.toStringAsFixed(2)}',
+                    '\$${product.price.start.toStringAsFixed(2)}-\$${product.price.end.toStringAsFixed(2)}',
                     style: const TextStyle(fontSize: 14, color: Colors.green),
                   ),
                   const SizedBox(

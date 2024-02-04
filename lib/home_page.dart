@@ -166,27 +166,287 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         RowOfFeaturedProducts(
                           shoppingCart: myShoppingCart,
+                          products: [
+                            Product(
+                                name: 'Blue shirt', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Blue shirt', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Blue shirt', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Blue shirt', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Blue shirt', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Blue shirt', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Blue shirt', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Blue shirt', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Blue shirt', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                          ],
                         ),
                         RowOfFeaturedProducts(
                           shoppingCart: myShoppingCart,
+                          products: [
+                            Product(
+                                name: 'Black Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Black Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Black Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Black Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Black Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Black Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Black Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Black Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Black Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Black Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                          ],
                         ),
                         RowOfFeaturedProducts(
                           shoppingCart: myShoppingCart,
+                          products: [
+                            Product(
+                                name: 'Grey Short', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Grey Short', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Grey Short', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Grey Short', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Grey Short', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Grey Short', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Grey Short', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Grey Short', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Grey Short', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                          ],
                         ),
                         RowOfFeaturedProducts(
                           shoppingCart: myShoppingCart,
+                          products: [
+                            Product(
+                                name: 'Blue Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Blue Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Blue Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Blue Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Blue Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Blue Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Blue Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Blue Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Blue Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Blue Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Blue Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Blue Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                          ],
                         ),
                         RowOfFeaturedProducts(
                           shoppingCart: myShoppingCart,
+                          products: [
+                            Product(
+                                name: 'Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                          ],
                         ),
                         RowOfFeaturedProducts(
                           shoppingCart: myShoppingCart,
+                          products: [
+                            Product(
+                                name: 'Grey Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Grey Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Grey Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Grey Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Grey Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Grey Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Grey Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Grey Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Grey Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                            Product(
+                                name: 'Grey Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                ImageUrl: ''),
+                          ],
                         ),
                         RowOfFeaturedProducts(
                           shoppingCart: myShoppingCart,
+                          products: [
+                            Product(
+                                name: 'Red Dress', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Red Dress', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Red Dress', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Red Dress', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Red Dress', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Red Dress', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Red Dress', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Red Dress', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Red Dress', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Red Dress', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Red Dress', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                          ],
                         ),
                         RowOfFeaturedProducts(
                           shoppingCart: myShoppingCart,
+                          products: [
+                            Product(
+                                name: 'Red Skirt', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Red Skirt', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Red Skirt', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Red Skirt', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Red Skirt', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Red Skirt', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Red Skirt', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Red Skirt', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                            Product(
+                                name: 'Red Skirt', price: Range(start: 12.30, end: 16.30), ImageUrl: ''),
+                          ],
                         ),
                         // Add more RowOfFeaturedProducts as needed
                       ],
