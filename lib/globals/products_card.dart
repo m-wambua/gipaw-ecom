@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 
+import 'package:flutter_application_1/globals/product_details-page.dart';
+
 class Product {
   final String name;
   final Range price;
@@ -73,7 +75,14 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return 
+    
+    GestureDetector(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductDetailsPage(product: product,shoppingCart: shoppingCart,),
+        ),);
+      },
+      child:     Container(
       margin: const EdgeInsets.all(8),
       width: 150,
       child: Card(
@@ -128,6 +137,8 @@ class ProductCard extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
+    
+
   }
 }
