@@ -24,7 +24,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Product Details'),
+        title: const Text('Product Details'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -46,7 +46,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                     width: 16), // Add some spacing between image and details
                 // Product details on the left
                 Expanded(
@@ -55,36 +55,36 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     children: [
                       Text(
                         widget.product.name,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 24, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text(
                         '\$${widget.product.price.start.toStringAsFixed(2)}-\$${widget.product.price.end.toStringAsFixed(2)}',
                         style:
                             const TextStyle(fontSize: 14, color: Colors.green),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Row(mainAxisAlignment: MainAxisAlignment.start,
-                      children: [Text('Quantity:',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+                      children: [const Text('Quantity:',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
                       
                       ),
-                      SizedBox(width: 20,),
+                      const SizedBox(width: 20,),
                       buildQuantitySelector(),
                       ],
                       ),
-                      SizedBox(height: 10,),
+                      const SizedBox(height: 10,),
 
-                      Text(
+                      const Text(
                         'The price per product is dependent on size',
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.normal),
                       ),
-                      SizedBox(height: 15),
+                      const SizedBox(height: 15),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Sizes:',
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
@@ -104,7 +104,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Logo:',
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
@@ -113,7 +113,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           buildlogoRadioButton(false, 'No'),
                         ],
                       ),
-                      SizedBox(height: 15),
+                      const SizedBox(height: 15),
                       ElevatedButton(
                         onPressed: () {
                           // Handle the onPressed event for the "Add to Cart" button
@@ -122,14 +122,14 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                               name: widget.product.name,
                               price: (widget.product.price),
                               ImageUrl: widget.product.ImageUrl));
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                             content: Text('Product added to the cart'),
                             duration: Duration(seconds: 2),
                           ));
                         },
-                        child: Text('Add to Cart'),
+                        child: const Text('Add to Cart'),
                       ),
-                      SizedBox(height: 15),
+                      const SizedBox(height: 15),
                       ElevatedButton(
                         onPressed: () {
                           Navigator.push(
@@ -140,10 +140,10 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                       orderedItems: shoppingCart.items)));
                           // Handle the onPressed event for the "Add to Cart" button
                         },
-                        child: Text('Buy Now'),
+                        child: const Text('Buy Now'),
                       ),
-                      SizedBox(height: 25),
-                      Text(
+                      const SizedBox(height: 25),
+                      const Text(
                         'Sizes relate to age as follows:\n'
                         '18: 2-3 years\n'
                         '20: 3-4 years\n'
@@ -156,8 +156,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         style: TextStyle(fontSize: 16),
                       ),
 
-                      SizedBox(height: 40,),
-                      Text('Your Total will be: ')
+                      const SizedBox(height: 40,),
+                      const Text('Your Total will be: ')
                     ],
                   ),
                 ),
@@ -206,7 +206,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   Widget buildLogoNameTextField() {
     return TextField(
       controller: logoController,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
           labelText: 'Enter Logo Name', border: OutlineInputBorder()),
     );
   }

@@ -13,7 +13,7 @@ class MyCartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('My Cart'),
+          title: const Text('My Cart'),
         ),
         body: Column(
           children: [
@@ -93,9 +93,9 @@ class ProductCardInCart extends StatelessWidget {
                     onPressed: () {
                       // Remove the product from the shopping cart
                       shoppingCart.removeProduct(product);
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: const Text('Product removed from the cart'),
-                        duration: const Duration(seconds: 2),
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content:  Text('Product removed from the cart'),
+                        duration: Duration(seconds: 2),
                       ));
                     },
                     child: const Row(

@@ -122,9 +122,9 @@ class ProductCard extends StatelessWidget {
                       onPressed: () {
                         // Add the product to the shopping cart
                         shoppingCart.addToCart(product);
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: const Text('Product added to the cart'),
-                          duration: const Duration(seconds: 2),
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content:  Text('Product added to the cart'),
+                          duration:  Duration(seconds: 2),
                         ));
                       },
                       child: const Row(
