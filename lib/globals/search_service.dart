@@ -12,7 +12,7 @@ class SearchService {
   static Future<List<String>> searchItems(String query) async {
     List<String> results = [];
     //Simulate asynchronous search operation (e.g, fetch data from API)
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     //Search for matching keywords
     searchIndex.forEach((keyword, items) {
       if (query.toLowerCase().contains(keyword)) {

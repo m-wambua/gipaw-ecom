@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
 
 import 'package:flutter_application_1/globals/product_details-page.dart';
 
 class Product {
   final String name;
   final Range price;
-  final String ImageUrl;
+  final String imageUrl;
 
-  Product({required this.name, required this.price, required this.ImageUrl});
+  Product({required this.name, required this.price, required this.imageUrl});
+  //Getter method for the name property
+  String get productName => name;
 }
 
 class Range {
@@ -60,85 +61,99 @@ class ShoppingCart {
       mintotalPrice += product.price.start;
       maxtotalPrice += product.price.end;
     }
-    return Range(start:mintotalPrice, end:maxtotalPrice);
+    return Range(start: mintotalPrice, end: maxtotalPrice);
   }
 }
 
 class ProductCard extends StatelessWidget {
   final Product product;
-  final ShoppingCart
-      shoppingCart; //pass the shopping cart instance to the porduct card
+  final ShoppingCart shoppingCart; // Pass the shopping cart instance to the product card
 
-  const ProductCard(
-      {Key? key, required this.product, required this.shoppingCart})
+  const ProductCard({Key? key, required this.product, required this.shoppingCart})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return 
-    
-    GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductDetailsPage(product: product,shoppingCart: shoppingCart,),
-        ),);
-      },
-      child:     Container(
-      margin: const EdgeInsets.all(8),
-      width: 150,
-      child: Card(
-        elevation: 5,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AspectRatio(
-              aspectRatio: 4 / 3,
-              child: Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage(product.ImageUrl),
-                        fit: BoxFit.cover)),
-                // Placeholder for product image
-              ),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailsPage(
+              product: product,
+              shoppingCart: shoppingCart,
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    product.name,
-                    style: const TextStyle(
-                        fontSize: 14, fontWeight: FontWeight.bold),
+          ),
+        );
+      },
+      child: 
+      
+      Container(
+        margin: const EdgeInsets.all(8),
+        width: 250,
+        
+        
+        child: Card(
+          elevation: 5,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              AspectRatio(
+                aspectRatio: 21/ 9,
+                child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(product.imageUrl), // Use imageUrl from Product
+                      fit: BoxFit.contain
+                    ),
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    '\$${product.price.start.toStringAsFixed(2)}-\$${product.price.end.toStringAsFixed(2)}',
-                    style: const TextStyle(fontSize: 14, color: Colors.green),
-                  ),
-                  const SizedBox(
-                    height: 4,
-                  ),
-                  ElevatedButton(
+                  // Placeholder for product image
+                ),
+              ),
+              Expanded(flex:4,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    
+                    Text(
+                      product.name,
+                      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      '\$${product.price.start.toStringAsFixed(2)}-\$${product.price.end.toStringAsFixed(2)}',
+                      style: const TextStyle(fontSize: 14, color: Colors.green),
+                    ),
+                    const SizedBox(height: 4),
+                    ElevatedButton(
                       onPressed: () {
                         // Add the product to the shopping cart
                         shoppingCart.addToCart(product);
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content:  Text('Product added to the cart'),
-                          duration:  Duration(seconds: 2),
-                        ));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Product added to the cart'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
                       },
                       child: const Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [Text('Add to cart')],
-                      ))
-                ],
-              ),
-            ),
-          ],
+                      ),
+                    ),
+                  ],
+                ),
+              )
+              
+                
+              )  
+              
+            ],
+          ),
         ),
       ),
-    ));
-    
-
+    );
   }
 }

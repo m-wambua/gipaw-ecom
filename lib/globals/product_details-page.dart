@@ -39,7 +39,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: NetworkImage(widget.product.ImageUrl),
+                          image: NetworkImage(widget.product.imageUrl),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -121,7 +121,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           shoppingCart.addToCart(Product(
                               name: widget.product.name,
                               price: (widget.product.price),
-                              ImageUrl: widget.product.ImageUrl));
+                              imageUrl: widget.product.imageUrl));
                           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                             content: Text('Product added to the cart'),
                             duration: Duration(seconds: 2),
@@ -177,7 +177,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           groupValue: selectedSize,
           onChanged: (value) {
             setState(() {
-              selectedSize = value as int?;
+              selectedSize = value;
             });
           },
         ),
@@ -194,7 +194,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           groupValue: logoNologo,
           onChanged: (newvalue) {
             setState(() {
-              logoNologo = newvalue as bool?;
+              logoNologo = newvalue;
             });
           },
         ),

@@ -8,22 +8,22 @@ class CheckoutPage extends StatelessWidget {
   
   final List<Product> orderedItems;
 
-  CheckoutPage({Key? key, required this.totalPrice, required this.orderedItems})
+  const CheckoutPage({Key? key, required this.totalPrice, required this.orderedItems})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Checkout'),
+        title: const Text('Checkout'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text('Total Price: \$${totalPrice.start.toStringAsFixed(2)}-\$${totalPrice.end.toStringAsFixed(2)}'),
-          SizedBox(height: 16),
-          Text('Ordered Items:'),
+          const SizedBox(height: 16),
+          const Text('Ordered Items:'),
           Expanded(
             child: ListView.builder(
               itemCount: orderedItems.length,

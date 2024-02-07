@@ -5,7 +5,7 @@ import 'package:flutter_application_1/globals/products_card.dart';
 class CartTotals extends StatelessWidget {
   final ShoppingCart shoppingCart;
 
-  CartTotals({Key? key, required this.shoppingCart}) : super(key: key);
+  const CartTotals({Key? key, required this.shoppingCart}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class CartTotals extends StatelessWidget {
         children: [
           Text(
             'Total: \$${totalMin.toStringAsFixed(2)}- \$${totalMax.toStringAsFixed(2)}',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ],
       ),

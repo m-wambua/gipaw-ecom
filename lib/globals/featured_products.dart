@@ -8,11 +8,11 @@ class RowOfFeaturedProducts extends StatelessWidget {
   // List of indivudual products for this row
   final List<Product> products;
 
-  RowOfFeaturedProducts({required this.shoppingCart, required this.products});
+  const RowOfFeaturedProducts({super.key, required this.shoppingCart, required this.products});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 250,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,

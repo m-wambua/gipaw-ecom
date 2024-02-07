@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/globals/products_card.dart';
 import 'package:flutter_application_1/home_page.dart';
-import 'package:flutter_application_1/globals/my_cart.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(create: (context) => CounterNotifier(),
-    child:const MyApp() ,)
+   
+    const MyApp() 
     
     );
 }

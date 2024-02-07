@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/globals/cart_totals.dart';
 import 'package:flutter_application_1/globals/check_out_page.dart';
+import 'package:flutter_application_1/globals/product_details-page.dart';
 import 'package:flutter_application_1/globals/products_card.dart';
-import 'package:provider/provider.dart';
 
 class MyCartPage extends StatelessWidget {
   final ShoppingCart shoppingCart;
 
-  MyCartPage({Key? key, required this.shoppingCart}) : super(key: key);
+  const MyCartPage({Key? key, required this.shoppingCart}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,16 +57,26 @@ class ProductCardInCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return
+    GestureDetector(
+      onTap: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context)=> ProductDetailsPage(product: product, shoppingCart: shoppingCart))
+        );
+
+      },
+      child: Container(
       margin: const EdgeInsets.all(8),
       width: 150,
+      
       child: Card(
         elevation: 5,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AspectRatio(
-              aspectRatio: 4 / 3,
+              aspectRatio: 16 / 9,
               child: Container(
                 color: Colors.grey, // Placeholder for product image
               ),
@@ -109,6 +119,9 @@ class ProductCardInCart extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ))
+    ;
+    
+     
   }
 }
