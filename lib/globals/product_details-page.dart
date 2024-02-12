@@ -15,13 +15,42 @@ class ProductDetailsPage extends StatefulWidget {
 }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
-  int? selectedSize; // Variable to hold the selected size
+  double? selectedSize; // Variable to hold the selected size
   bool? logoNologo = false;
   var shoppingCart = ShoppingCart();
   int selectedQuantity = 1;
   TextEditingController logoController = TextEditingController();
+
+  double calculatedFinalPrice() {
+    double basePrice = widget.product.price.start;
+    double priceIncreament = 0.5;
+
+    if (widget.product.size.range != null && selectedSize != null) {
+      //Determine the start size
+      double startSize = widget.product.size.range!.start;
+
+      //Calulate the number of size increaments from the start size
+      int sizeIncreamentCount = (selectedSize! - startSize).toInt();
+
+      // Adjust the base price based on the size increaments
+      double adjustedPrice =
+          basePrice + (priceIncreament * sizeIncreamentCount);
+
+      //Adjust the base price based on the size increaments
+      double additionalPrice = logoNologo! ? 0.5 : 0.0;
+
+      //calculate total price based on adjusted price, quantity and additional factirs
+      double totalPrice = (adjustedPrice + additionalPrice) * selectedQuantity;
+
+      return totalPrice;
+    } else {
+      return basePrice;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    double totalPrice = calculatedFinalPrice(); //Calulate final price
     return Scaffold(
       appBar: AppBar(
         title: const Text('Product Details'),
@@ -65,44 +94,44 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                             const TextStyle(fontSize: 14, color: Colors.green),
                       ),
                       const SizedBox(height: 10),
-                      Row(mainAxisAlignment: MainAxisAlignment.start,
-                      children: [const Text('Quantity:',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
-                      
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Quantity:',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          buildQuantitySelector(),
+                        ],
                       ),
-                      const SizedBox(width: 20,),
-                      buildQuantitySelector(),
-                      ],
+                      const SizedBox(
+                        height: 10,
                       ),
-                      const SizedBox(height: 10,),
-
                       const Text(
                         'The price per product is dependent on size',
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.normal),
                       ),
                       const SizedBox(height: 15),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Sizes:',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                          ),
-                          buildSizeRadioButton(18),
-                          buildSizeRadioButton(20),
-                          buildSizeRadioButton(22),
-                          buildSizeRadioButton(24),
-                          buildSizeRadioButton(26),
-                          buildSizeRadioButton(28),
-                          buildSizeRadioButton(30),
-                          buildSizeRadioButton(32),
-                          // Add more sizes as needed
-                        ],
-                      ),
+                      if (widget.product.size.range != null)
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: _buildNumericSizeRadioButtons(
+                              widget.product.size.range!),
+                        ),
+                      if (widget.product.size.sizes != null)
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: _buildStringSizedButtons(
+                              widget.product.size.sizes!),
+                        ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                       mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           const Text(
                             'Logo:',
@@ -113,35 +142,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           buildlogoRadioButton(false, 'No'),
                         ],
                       ),
+                      if (logoNologo ==
+                          true) // Conditionally display text field
+                        buildLogoNameTextField(),
                       const SizedBox(height: 15),
-                      ElevatedButton(
-                        onPressed: () {
-                          // Handle the onPressed event for the "Add to Cart" button
-
-                          shoppingCart.addToCart(Product(
-                              name: widget.product.name,
-                              price: (widget.product.price),
-                              imageUrl: widget.product.imageUrl));
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                            content: Text('Product added to the cart'),
-                            duration: Duration(seconds: 2),
-                          ));
-                        },
-                        child: const Text('Add to Cart'),
-                      ),
                       const SizedBox(height: 15),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CheckoutPage(
-                                      totalPrice: widget.product.price,
-                                      orderedItems: shoppingCart.items)));
-                          // Handle the onPressed event for the "Add to Cart" button
-                        },
-                        child: const Text('Buy Now'),
-                      ),
                       const SizedBox(height: 25),
                       const Text(
                         'Sizes relate to age as follows:\n'
@@ -155,9 +160,26 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         '32: 9-10 years',
                         style: TextStyle(fontSize: 16),
                       ),
-
-                      const SizedBox(height: 40,),
-                      const Text('Your Total will be: ')
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      Text(
+                          'Your Total will be: \$${totalPrice.toStringAsFixed(2)}'),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          // Handle the onPressed event for the "Add to Cart" button
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CheckoutPage(
+                                      totalPrice: totalPrice,
+                                      orderedItems: shoppingCart.items)));
+                        },
+                        child: const Text('Proceed to Checkout'),
+                      ),
                     ],
                   ),
                 ),
@@ -166,23 +188,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget buildSizeRadioButton(int size) {
-    return Row(
-      children: [
-        Radio(
-          value: size,
-          groupValue: selectedSize,
-          onChanged: (value) {
-            setState(() {
-              selectedSize = value;
-            });
-          },
-        ),
-        Text(size.toString()),
-      ],
     );
   }
 
@@ -212,25 +217,67 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   }
 
   Widget buildQuantitySelector() {
-  return Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(5.0),
-  border: Border.all( color: Colors.grey,
-  ) ),child: DropdownButton<int>(
-    value: selectedQuantity,
-    onChanged: (value) {
-      setState(() {
-        selectedQuantity = value!;
-      });
-    },
-    items: List.generate(
-      10,
-      (index) => DropdownMenuItem<int>(
-        value: index + 1,
-        child: Text((index + 1).toString()),
-      ),
-    ).toList(), // Ensure the list is converted to a List
-  ));
-} 
-  
-  
+    return Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5.0),
+            border: Border.all(
+              color: Colors.grey,
+            )),
+        child: DropdownButton<int>(
+          value: selectedQuantity,
+          onChanged: (value) {
+            setState(() {
+              selectedQuantity = value!;
+            });
+          },
+          items: List.generate(
+            10,
+            (index) => DropdownMenuItem<int>(
+              value: index + 1,
+              child: Text((index + 1).toString()),
+            ),
+          ).toList(), // Ensure the list is converted to a List
+        ));
+  }
 
+  List<Widget> _buildNumericSizeRadioButtons(Range sizeRange) {
+    List<Widget> buttons = [];
+    for (double size = sizeRange.start; size <= sizeRange.end; size += 2) {
+      buttons.add(Row(
+        children: [
+          Radio<double>(
+            value: size,
+            groupValue: selectedSize, //Set group value as needed
+            onChanged: (value) {
+              setState(() {
+                selectedSize = value;
+              });
+              //Handle radio button selection
+            },
+          ),
+          Text(size.toString())
+        ],
+      ));
+    }
+    return buttons;
+  }
+
+  List<Widget> _buildStringSizedButtons(List<String> sizes) {
+    List<Widget> buttons = [];
+    for (String size in sizes) {
+      buttons.add(Row(
+        children: [
+          Radio<String>(
+            value: size,
+            groupValue: null,
+            onChanged: (value) {
+              //Handle radio button selection
+            },
+          ),
+          Text(size),
+        ],
+      ));
+    }
+    return buttons;
+  }
 }
