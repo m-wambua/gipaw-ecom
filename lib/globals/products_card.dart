@@ -50,11 +50,56 @@ class CounterNotifier extends ChangeNotifier {
   }
 }
 
+class OrderedProduct {
+  final Product product;
+  final int quantity;
+  final String size;
+  final double totalPrice;
+  OrderedProduct(
+      {required this.product,
+      required this.quantity,
+      required this.size,
+      required this.totalPrice});
+}
+
+class ConfiguredItems {
+  List<OrderedProduct> _orderedProducts = [];
+
+  List<OrderedProduct> get items => _orderedProducts;
+
+  void addProduct(OrderedProduct orderedProduct) {
+    _orderedProducts.add(orderedProduct);
+  }
+
+  double getTotalPrice() {
+    double totalPrice = 0;
+    for (var item in _orderedProducts) {
+      totalPrice += item.totalPrice;
+    }
+    return totalPrice;
+  }
+}
+
 class ShoppingCart {
   List<Product> items = [];
+List<OrderedProduct> _orderedProducts = [];
+
+  List<OrderedProduct> get orderedProducts => _orderedProducts;
+
   int _itemCount = 0;
   int get itemCount =>
       _itemCount; // COunter for the number of items in the cart
+
+  void addProduct(OrderedProduct orderedProduct) {
+    _orderedProducts.add(orderedProduct);
+  }
+
+  // Add a method to get the ordered products
+  List<OrderedProduct> getOrderedProducts() {
+    return _orderedProducts;
+  }
+
+
   void addToCart(Product product) {
     items.add(product);
     _itemCount++;

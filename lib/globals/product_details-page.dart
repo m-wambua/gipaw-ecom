@@ -147,6 +147,29 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         buildLogoNameTextField(),
                       const SizedBox(height: 15),
                       const SizedBox(height: 15),
+                      ElevatedButton(
+                        onPressed: () {
+                          //Creaye an instance of OrderdProduct with configured values
+                          final orderedProduct = OrderedProduct(
+                            product: widget.product,
+                            quantity: selectedQuantity,
+                            size: selectedSize != null
+                                ? selectedSize.toString()
+                                : 'N/A',
+                            totalPrice: calculatedFinalPrice(),
+                          );
+                          widget.shoppingCart.addProduct(orderedProduct);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>  CheckoutPage(
+                                      shoppingCart: widget.shoppingCart,
+                                    )),
+                          );
+                          // Handle the onPressed event for the "Add to Cart" button
+                        },
+                        child: const Text('Proceed to Checkout'),
+                      ),
                       const SizedBox(height: 25),
                       const Text(
                         'Sizes relate to age as follows:\n'
@@ -167,19 +190,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           'Your Total will be: \$${totalPrice.toStringAsFixed(2)}'),
                       const SizedBox(
                         height: 20,
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          // Handle the onPressed event for the "Add to Cart" button
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CheckoutPage(
-                                      totalPrice: totalPrice,
-                                      orderedItems: shoppingCart.items)));
-                        },
-                        child: const Text('Proceed to Checkout'),
-                      ),
+                      )
                     ],
                   ),
                 ),
