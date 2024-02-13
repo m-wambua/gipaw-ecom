@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/globals/check_out_page.dart';
 import 'package:flutter_application_1/globals/my_cart.dart';
 import 'package:flutter_application_1/globals/products_card.dart';
 import 'package:flutter_application_1/globals/search_page.dart';
@@ -68,7 +69,7 @@ class _HomePageState extends State<HomePage> {
             actions: [
               IconButton(
                 icon: Stack(children: [
-                  const Icon(Icons.shopping_cart),
+                  const Icon(Icons.list),
                   
                 ]),
                 onPressed: () {
@@ -77,6 +78,24 @@ class _HomePageState extends State<HomePage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => MyCartPage(
+                            
+                                shoppingCart: myShoppingCart,
+                            
+                              )));
+                },
+              ),
+
+              IconButton(
+                icon: Stack(children: [
+                  const Icon(Icons.add_shopping_cart),
+                  
+                ]),
+                onPressed: () {
+                  // Navigate to MyCartPage
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CheckoutPage(
                             
                                 shoppingCart: myShoppingCart,
                             

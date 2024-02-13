@@ -16,7 +16,7 @@ class MyCartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('My Cart'),
+          title: const Text('My WishList'),
         ),
         body: Column(
           children: [
@@ -104,7 +104,7 @@ class ProductCardInCart extends StatelessWidget {
                         },
                         child: const Row(
                           mainAxisSize: MainAxisSize.min,
-                          children: [Text('Remove from cart')],
+                          children: [Text('Remove from WishList')],
                         ),
                       ),
                     ],
