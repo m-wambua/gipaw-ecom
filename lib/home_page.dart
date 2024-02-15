@@ -3,6 +3,7 @@ import 'package:flutter_application_1/globals/check_out_page.dart';
 import 'package:flutter_application_1/globals/my_cart.dart';
 import 'package:flutter_application_1/globals/products_card.dart';
 import 'package:flutter_application_1/globals/search_page.dart';
+import 'package:flutter_application_1/globals/signup_page.dart';
 import 'package:provider/provider.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'globals/featured_products.dart';
@@ -31,8 +32,9 @@ class CounterDisplay extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key,}) : super(key: key);
-  
+  const HomePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -70,7 +72,6 @@ class _HomePageState extends State<HomePage> {
               IconButton(
                 icon: Stack(children: [
                   const Icon(Icons.list),
-                  
                 ]),
                 onPressed: () {
                   // Navigate to MyCartPage
@@ -78,17 +79,13 @@ class _HomePageState extends State<HomePage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => MyCartPage(
-                            
                                 shoppingCart: myShoppingCart,
-                            
                               )));
                 },
               ),
-
               IconButton(
                 icon: Stack(children: [
                   const Icon(Icons.add_shopping_cart),
-                  
                 ]),
                 onPressed: () {
                   // Navigate to MyCartPage
@@ -96,9 +93,7 @@ class _HomePageState extends State<HomePage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => CheckoutPage(
-                            
                                 shoppingCart: myShoppingCart,
-                            
                               )));
                 },
               ),
@@ -168,8 +163,16 @@ class _HomePageState extends State<HomePage> {
                     )),
 
                     const Spacer(),
-                    IconButton(icon: const Icon(Icons.person), onPressed: () {}
+                    IconButton(
+                        icon: const Icon(Icons.person),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignUpPage()));
+                        }
                         // TODO: Add functionality for sign-in
+
                         ),
                     ElevatedButton(
                       onPressed: () {
@@ -212,303 +215,515 @@ class _HomePageState extends State<HomePage> {
                           shoppingCart: myShoppingCart,
                           products: [
                             Product(
-      name: 'Blue shirt', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18, 32) ),),
-  
-  Product(
-      name: 'Cream-white shirt', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Cream-yellow shirt', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Blue-checked shirt', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Red-Checked shirt', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Pink-Checked shirt', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Green-Checked shirt', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Blue shirt', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-
-      
-                          ],
-                        ),
-                        RowOfFeaturedProducts(
-                          shoppingCart: myShoppingCart,
-                          products: [
-                            
-  Product(
-      name: 'Black Trousers',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Grey Trousers',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Green Trousers',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Red Trousers',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Blue Trousers',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Navi-Blue Trousers',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Khaki Trousers',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Maroon Trousers',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Black Trousers',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Black Trousers',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
+                              name: 'Blue shirt',
+                              price: Range(start: 12.30, end: 16.30),
+                              imageUrl: '',
+                              size: RangeOrString(
+                                  range: generateNumericSizeRange(18, 32)),
+                            ),
+                            Product(
+                                name: 'Cream-white shirt',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Cream-yellow shirt',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Blue-checked shirt',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Red-Checked shirt',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Pink-Checked shirt',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Green-Checked shirt',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Blue shirt',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
                           ],
                         ),
                         RowOfFeaturedProducts(
                           shoppingCart: myShoppingCart,
                           products: [
                             Product(
-      name: 'Grey Short', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Green Short', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Black Short', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Ash-Grey Short', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Blue Short', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Red Short', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Maroon Short', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Khaki Short', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Grey Short', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-
+                                name: 'Black Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Grey Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Green Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Red Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Blue Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Navi-Blue Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Khaki Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Maroon Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Black Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Black Trousers',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
                           ],
                         ),
                         RowOfFeaturedProducts(
                           shoppingCart: myShoppingCart,
                           products: [
-                            
-  Product(
-      name: 'Blue Tracksuit',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Black Tracksuit',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Navi-Blue Tracksuit',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Sky-Blue Tracksuit',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Maroon Tracksuit',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Purple Tracksuit',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'White Tracksuit',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Yellow Tracksuit',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Red Tracksuit',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Green Tracksuit',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Blue Tracksuit',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Blue Tracksuit',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-
-      
+                            Product(
+                                name: 'Grey Short',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Green Short',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Black Short',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Ash-Grey Short',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Blue Short',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Red Short',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Maroon Short',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Khaki Short',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Grey Short',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
                           ],
                         ),
                         RowOfFeaturedProducts(
                           shoppingCart: myShoppingCart,
                           products: [
-                            
-
-  Product(
-      name: 'Purple-Fleece Jacket',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Green-Fleece Jacket',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Blue-Fleece Jacket',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Red-Fleece Jacket',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Brown-Fleece Jacket',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Fleece Jacket',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Fleece Jacket',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Fleece Jacket',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Fleece Jacket',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Fleece Jacket',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-
-
-      
+                            Product(
+                                name: 'Blue Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Black Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Navi-Blue Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Sky-Blue Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Maroon Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Purple Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'White Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Yellow Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Red Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Green Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Blue Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Blue Tracksuit',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
                           ],
                         ),
                         RowOfFeaturedProducts(
                           shoppingCart: myShoppingCart,
                           products: [
-                            
-
-  Product(
-      name: 'Grey Sweater',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Blue Sweater',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Black Sweater',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Red Sweater',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Maroon Sweater',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Ash-Grey Sweater',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Sky-Blue Sweater',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Brown Sweater',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Grey Sweater',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Grey Sweater',
-      price: Range(start: 12.30, end: 16.30),
-      imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-
-      
+                            Product(
+                                name: 'Purple-Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Green-Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Blue-Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Red-Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Brown-Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Fleece Jacket',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
                           ],
                         ),
                         RowOfFeaturedProducts(
                           shoppingCart: myShoppingCart,
                           products: [
-                            
-  Product(
-      name: 'Red Dress', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Blue Dress', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Black Dress', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Checked Pink Dress', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Checked Red Dress', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Green Dress', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Purple Dress', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Maroon Dress', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'White Dress', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Checked Blue Dress', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Red Dress', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  
+                            Product(
+                                name: 'Grey Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Blue Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Black Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Red Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Maroon Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Ash-Grey Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Sky-Blue Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Brown Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Grey Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Grey Sweater',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
                           ],
                         ),
                         RowOfFeaturedProducts(
                           shoppingCart: myShoppingCart,
                           products: [
-                            
-  Product(
-      name: 'Red Skirt', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Red Skirt', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Red Skirt', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Red Skirt', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Red Skirt', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Red Skirt', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Red Skirt', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Red Skirt', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  Product(
-      name: 'Red Skirt', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(range: generateNumericSizeRange(18,24))),
-  
+                            Product(
+                                name: 'Red Dress',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Blue Dress',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Black Dress',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Checked Pink Dress',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Checked Red Dress',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Green Dress',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Purple Dress',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Maroon Dress',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'White Dress',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Checked Blue Dress',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Red Dress',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                          ],
+                        ),
+                        RowOfFeaturedProducts(
+                          shoppingCart: myShoppingCart,
+                          products: [
+                            Product(
+                                name: 'Red Skirt',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Red Skirt',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Red Skirt',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Red Skirt',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Red Skirt',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Red Skirt',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Red Skirt',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Red Skirt',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
+                            Product(
+                                name: 'Red Skirt',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(
+                                    range: generateNumericSizeRange(18, 24))),
                           ],
                         ),
 
@@ -516,25 +731,95 @@ class _HomePageState extends State<HomePage> {
                           shoppingCart: myShoppingCart,
                           products: [
                             Product(
-      name: 'Red Tie', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(sizes: ['Small', 'Medium', 'Large','Extra Large'])),
-  Product(
-      name: 'Red Tie', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(sizes: ['Small', 'Medium', 'Large','Extra Large'])),
-  Product(
-      name: 'Red Tie', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(sizes: ['Small', 'Medium', 'Large','Extra Large'])),
-  Product(
-      name: 'Red Tie', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(sizes: ['Small', 'Medium', 'Large','Extra Large'])),
-  Product(
-      name: 'Red Tie', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(sizes: ['Small', 'Medium', 'Large','Extra Large'])),
-  Product(
-      name: 'Red Tie', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(sizes: ['Small', 'Medium', 'Large','Extra Large'])),
-  Product(
-      name: 'Red Tie', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(sizes: ['Small', 'Medium', 'Large','Extra Large'])),
-  Product(
-      name: 'Red Tie', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(sizes: ['Small', 'Medium', 'Large','Extra Large'])),
-  Product(
-      name: 'Red Tie', price: Range(start: 12.30, end: 16.30), imageUrl: '',size: RangeOrString(sizes: ['Small', 'Medium', 'Large','Extra Large'])),
-
-      
+                                name: 'Red Tie',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(sizes: [
+                                  'Small',
+                                  'Medium',
+                                  'Large',
+                                  'Extra Large'
+                                ])),
+                            Product(
+                                name: 'Red Tie',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(sizes: [
+                                  'Small',
+                                  'Medium',
+                                  'Large',
+                                  'Extra Large'
+                                ])),
+                            Product(
+                                name: 'Red Tie',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(sizes: [
+                                  'Small',
+                                  'Medium',
+                                  'Large',
+                                  'Extra Large'
+                                ])),
+                            Product(
+                                name: 'Red Tie',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(sizes: [
+                                  'Small',
+                                  'Medium',
+                                  'Large',
+                                  'Extra Large'
+                                ])),
+                            Product(
+                                name: 'Red Tie',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(sizes: [
+                                  'Small',
+                                  'Medium',
+                                  'Large',
+                                  'Extra Large'
+                                ])),
+                            Product(
+                                name: 'Red Tie',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(sizes: [
+                                  'Small',
+                                  'Medium',
+                                  'Large',
+                                  'Extra Large'
+                                ])),
+                            Product(
+                                name: 'Red Tie',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(sizes: [
+                                  'Small',
+                                  'Medium',
+                                  'Large',
+                                  'Extra Large'
+                                ])),
+                            Product(
+                                name: 'Red Tie',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(sizes: [
+                                  'Small',
+                                  'Medium',
+                                  'Large',
+                                  'Extra Large'
+                                ])),
+                            Product(
+                                name: 'Red Tie',
+                                price: Range(start: 12.30, end: 16.30),
+                                imageUrl: '',
+                                size: RangeOrString(sizes: [
+                                  'Small',
+                                  'Medium',
+                                  'Large',
+                                  'Extra Large'
+                                ])),
                           ],
                         ),
                         // Add more RowOfFeaturedProducts as needed
@@ -552,17 +837,16 @@ class _HomePageState extends State<HomePage> {
 
   void _performSearch(String searchQuery) {
     // Perform search
-   
 
-    
     // Navigate to the SearchPage with the list of search results
     Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => SearchPage(query: searchText,),
-    ),
-    
-  );
+      context,
+      MaterialPageRoute(
+        builder: (context) => SearchPage(
+          query: searchText,
+        ),
+      ),
+    );
 
     //print(searchResults);
   }
