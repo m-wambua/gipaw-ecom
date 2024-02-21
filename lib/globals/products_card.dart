@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_application_1/globals/product_details-page.dart';
+import 'package:flutter_application_1/globals/shopping_cart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Product {
   final String name;
@@ -16,6 +18,8 @@ class Product {
       required this.size});
   //Getter method for the name property
   String get productName => name;
+
+  
 }
 
 class Range {
@@ -60,84 +64,37 @@ class OrderedProduct {
       required this.quantity,
       required this.size,
       required this.totalPrice});
-}
 
-class ConfiguredItems {
-  List<OrderedProduct> _orderedProducts = [];
-
-  List<OrderedProduct> get items => _orderedProducts;
-
-  void addProduct(OrderedProduct orderedProduct) {
-    _orderedProducts.add(orderedProduct);
+        Map<String, dynamic> toJson() {
+    return {
+      'name': product,
+      'price': totalPrice,
+      'quantity': quantity,
+      'size':size,
+    };
   }
 
-  double getTotalPrice() {
-    double totalPrice = 0;
-    for (var item in _orderedProducts) {
-      totalPrice += item.totalPrice;
-    }
-    return totalPrice;
-  }
-}
-
-class ShoppingCart {
-  List<Product> items = [];
-List<OrderedProduct> _orderedProducts = [];
-
-  List<OrderedProduct> get orderedProducts => _orderedProducts;
-
-  int _itemCount = 0;
-  int get itemCount =>
-      _itemCount; // COunter for the number of items in the cart
-
-  void addProduct(OrderedProduct orderedProduct) {
-    _orderedProducts.add(orderedProduct);
-  }
-
-  // Add a method to get the ordered products
-  List<OrderedProduct> getOrderedProducts() {
-    return _orderedProducts;
-  }
-
-
-  void addToCart(Product product) {
-    items.add(product);
-    _itemCount++;
-    NotificationListener;
-    print('Item added to the cart. Updated itemcount: $_itemCount');
-    print('the counter is here: ');
-    // Increamnet the count when adding a product
-  }
-
-  int getItemCount() {
-    return _itemCount;
-  }
-
-  void removeProduct(Product product) {
-    items.remove(product);
-    _itemCount--;
-    NotificationListener;
-    print('Item removed from the cart. Updated item count: $_itemCount');
-  }
-
-  Range calculatedTotalPrice() {
-    double mintotalPrice = 0.0;
-    double maxtotalPrice = 0.0;
-    for (var product in items) {
-      mintotalPrice += product.price.start;
-      maxtotalPrice += product.price.end;
-    }
-    return Range(start: mintotalPrice, end: maxtotalPrice);
+  factory OrderedProduct.fromJson(Map<String, dynamic> json) {
+    return OrderedProduct(
+      product: json['name'],
+      totalPrice: json['price'],
+      quantity: json['quantity'],
+      size: json['size'],
+    );
   }
 }
+
+
+
 
 class ProductCard extends StatelessWidget {
   final Product product;
+  
   final ShoppingCart
       shoppingCart; // Pass the shopping cart instance to the product card
 
   const ProductCard(
-      {Key? key, required this.product, required this.shoppingCart})
+      {Key? key, required this.product, required this.shoppingCart, })
       : super(key: key);
 
   @override
@@ -150,6 +107,7 @@ class ProductCard extends StatelessWidget {
             builder: (context) => ProductDetailsPage(
               product: product,
               shoppingCart: shoppingCart,
+              
             ),
           ),
         );

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/globals/check_out_page.dart';
+import 'package:flutter_application_1/globals/login_page.dart';
 import 'package:flutter_application_1/globals/my_cart.dart';
+import 'package:flutter_application_1/globals/ordered_products_provider.dart';
 import 'package:flutter_application_1/globals/products_card.dart';
+import 'package:flutter_application_1/globals/profile_page.dart';
 import 'package:flutter_application_1/globals/search_page.dart';
+import 'package:flutter_application_1/globals/shopping_cart.dart';
 import 'package:flutter_application_1/globals/signup_page.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'globals/featured_products.dart';
 
@@ -32,8 +37,12 @@ class CounterDisplay extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
+  
+
   const HomePage({
+    
     Key? key,
+ 
   }) : super(key: key);
 
   @override
@@ -44,7 +53,26 @@ class _HomePageState extends State<HomePage> {
   @override
   final SidebarXController _sidebarXController =
       SidebarXController(selectedIndex: 0);
+ 
   final ShoppingCart myShoppingCart = ShoppingCart();
+  @override
+  void initState() {
+    super.initState();
+    var orderedProducts = myShoppingCart.orderedProducts;
+    Future.delayed(Duration.zero, () {
+      var orderedProductsProvider =
+          Provider.of<OrderedProductsProvider>(context, listen: false);
+      orderedProductsProvider.updateOrderedProducts(orderedProducts);
+    });
+  }
+
+  /*
+void initState() {
+  super.initState();
+  var orderedProductsProvider = Provider.of<OrderedProductsProvider>(context, listen: false);
+  orderedProductsProvider.updateOrderedProducts(myShoppingCart.orderedProducts);
+}
+*/
 
   TextEditingController searchController = TextEditingController();
   String searchText = '';
@@ -53,6 +81,9 @@ class _HomePageState extends State<HomePage> {
   //_HomePageState createState()
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
+    final userLastName = userProvider.userLastName;
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -98,6 +129,9 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
             ],
+            automaticallyImplyLeading: false,
+            floating: true,
+            pinned: true,
           ),
           SliverAppBar(
             expandedHeight: 50.0, // Set the height of the second AppBar
@@ -166,14 +200,27 @@ class _HomePageState extends State<HomePage> {
                     IconButton(
                         icon: const Icon(Icons.person),
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SignUpPage()));
+                          if (userProvider.isAuthenticated) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProfilePage()));
+                          } else {
+                            //Navigate to login page if not authenticated
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginPage()));
+                          }
                         }
                         // TODO: Add functionality for sign-in
 
                         ),
+                    if (userProvider.isAuthenticated)
+                      Text(userProvider.userLastName),
+                    const SizedBox(
+                      width: 5,
+                    ),
                     ElevatedButton(
                       onPressed: () {
                         //TODO: implement functionality for 'About' button
@@ -193,6 +240,9 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+            automaticallyImplyLeading: false,
+            floating: false,
+            pinned: true,
           ),
           SliverToBoxAdapter(
             child: Padding(
@@ -213,6 +263,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         RowOfFeaturedProducts(
                           shoppingCart: myShoppingCart,
+                          
                           products: [
                             Product(
                               name: 'Blue shirt',
@@ -267,6 +318,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         RowOfFeaturedProducts(
                           shoppingCart: myShoppingCart,
+                          
                           products: [
                             Product(
                                 name: 'Black Trousers',

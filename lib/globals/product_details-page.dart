@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/globals/check_out_page.dart';
 import 'package:flutter_application_1/globals/products_card.dart';
+import 'package:flutter_application_1/globals/shopping_cart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   final Product product;
   final ShoppingCart shoppingCart;
+  
 
   const ProductDetailsPage(
-      {Key? key, required this.product, required this.shoppingCart})
+      {Key? key, required this.product, required this.shoppingCart, })
       : super(key: key);
 
   @override
@@ -17,7 +20,7 @@ class ProductDetailsPage extends StatefulWidget {
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
   double? selectedSize; // Variable to hold the selected size
   bool? logoNologo = false;
-  var shoppingCart = ShoppingCart();
+
   int selectedQuantity = 1;
   TextEditingController logoController = TextEditingController();
 
@@ -162,9 +165,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>  CheckoutPage(
-                                      shoppingCart: widget.shoppingCart,
-                                    )),
+                                builder: (context) =>
+                                    CheckoutPage(shoppingCart: widget.shoppingCart,)),
                           );
                           // Handle the onPressed event for the "Add to Cart" button
                         },

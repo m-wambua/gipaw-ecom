@@ -3,14 +3,14 @@ import 'package:flutter_application_1/globals/cart_totals.dart';
 import 'package:flutter_application_1/globals/check_out_page.dart';
 import 'package:flutter_application_1/globals/product_details-page.dart';
 import 'package:flutter_application_1/globals/products_card.dart';
+import 'package:flutter_application_1/globals/shopping_cart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyCartPage extends StatelessWidget {
   final ShoppingCart shoppingCart;
   
 
-  const MyCartPage(
-      {Key? key, required this.shoppingCart})
-      : super(key: key);
+  const MyCartPage({Key? key, required this.shoppingCart}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +28,12 @@ class MyCartPage extends StatelessWidget {
                   return ProductCardInCart(
                     product: product,
                     shoppingCart: shoppingCart,
+                    
                   );
                 },
               ),
             ),
             CartTotals(shoppingCart: shoppingCart),
-            
           ],
         ));
   }
@@ -42,11 +42,13 @@ class MyCartPage extends StatelessWidget {
 class ProductCardInCart extends StatelessWidget {
   final Product product;
   final ShoppingCart shoppingCart;
+  
 
   const ProductCardInCart({
     Key? key,
     required this.product,
     required this.shoppingCart,
+    
   }) : super(key: key);
 
   @override
@@ -57,7 +59,10 @@ class ProductCardInCart extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) => ProductDetailsPage(
-                      product: product, shoppingCart: shoppingCart)));
+                        product: product,
+                        shoppingCart: shoppingCart,
+                        
+                      )));
         },
         child: Container(
           margin: const EdgeInsets.all(8),

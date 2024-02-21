@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -68,9 +71,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     if (value == null || value.isEmpty) {
                       return 'Please enter a username';
                     }
-                    if (!isUsernameUnique(value)) {
-                      return 'This username is already taken';
-                    }
+                    // if (!isUsernameUnique(value)) {return 'This username is already taken';}
                     //Add email validation logic here
                     return null;
                   },
@@ -170,6 +171,28 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: InputDecoration(
                     labelText: 'Confirm Password',
                   ),
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    //Add email validation logic here
+                    return null;
+                  },
+                  onChanged: (value) {
+                    setState(() {
+                      _poBoxNumber = value;
+                    });
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+
+                 const SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Postal Address',
+                  ),
                   keyboardType: TextInputType.visiblePassword,
                   validator: (value) {
                     //Add email validation logic here
@@ -264,8 +287,37 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  void _submitForm() {
+  void _submitForm() async {
     //Handle form submission here
     // This is where you would typically send the data to your backend
+    var formData = {
+      'username': _username,
+      'email': _email,
+      'password': _password,
+      'phone_number': _phoneNumber,
+      'first_name': _firstName,
+      'last_name': _lastName,
+      'po_box_number': _poBoxNumber,
+      'address_line1': _addressLine1,
+      'address_line2': _addressLine2,
+      'physical_location': _physicalLocation,
+    };
+
+    //Make an HTTP POST request to your backend server
+    var response = await http.post(
+      Uri.parse('http://127.0.0.1:8000/users/register', ),
+
+        headers: {"Content-Type": "application/json"},
+      body: jsonEncode(formData),
+    );
+    if (response.statusCode == 200) {
+      //If the request was succesfful, display a success message
+      print('Form submitted successful');
+    } else {
+      // If the request failed ,display an error message
+      print('Error submitting form: ${response.body}');
+      print('Response status: ${response.statusCode}');
+
+    }
   }
 }
