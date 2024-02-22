@@ -59,7 +59,14 @@ class ShoppingCart extends ChangeNotifier {
     return Range(start: mintotalPrice, end: maxtotalPrice);
   }
 
-  
+  void removeOrderedProduct(OrderedProduct orderedProduct) {
+    _orderedProducts.remove(orderedProduct);
+  }
+
+  // Or if you want to remove by product
+  void removeProductAsProduct(Product product) {
+    _orderedProducts.removeWhere((orderedProduct) => orderedProduct.product == product);
+  }
 
 
 

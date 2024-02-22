@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/globals/check_out_page.dart';
+import 'package:flutter_application_1/globals/checkoutpage_2.dart';
 import 'package:flutter_application_1/globals/products_card.dart';
 import 'package:flutter_application_1/globals/shopping_cart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -166,7 +167,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    CheckoutPage(shoppingCart: widget.shoppingCart,)),
+                                    CheckoutPage(shoppingCart: widget.shoppingCart)),
                           );
                           // Handle the onPressed event for the "Add to Cart" button
                         },

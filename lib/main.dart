@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/globals/checkout_data.dart';
 import 'package:flutter_application_1/globals/login_page.dart';
 import 'package:flutter_application_1/globals/ordered_products_provider.dart';
 import 'package:flutter_application_1/globals/products_card.dart';
 import 'package:flutter_application_1/globals/shopping_cart.dart';
 import 'package:flutter_application_1/home_page.dart';
+import 'package:flutter_application_1/home_page_2.dart';
 import 'package:provider/provider.dart';
   
   void main() {
@@ -25,7 +27,9 @@ class MyApp extends StatelessWidget {
           create: (context) => ShoppingCart(),
         ),
         ChangeNotifierProvider(create: (context)=> OrderedProductsProvider(),
-        )
+        
+        ),
+        ChangeNotifierProvider(create: (context)=>CheckoutData()),
       ],
       child: MaterialApp(
       title: 'Gipaw Designers',
