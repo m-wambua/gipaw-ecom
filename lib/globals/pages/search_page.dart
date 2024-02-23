@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/globals/products_card.dart';
-import 'package:flutter_application_1/globals/searchservice.dart';
+import 'package:flutter_application_1/globals/structure/products_card.dart';
+import 'package:flutter_application_1/globals/services/searchservice.dart';
 
 class SearchPage extends StatefulWidget {
   final String query;

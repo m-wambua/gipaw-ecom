@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/globals/products_card.dart';
+import 'package:flutter_application_1/globals/structure/products_card.dart';
 
 class CheckoutData extends ChangeNotifier {
   List<OrderedProduct> orderedProducts = [];

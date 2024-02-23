@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/globals/check_out_page.dart';
-import 'package:flutter_application_1/globals/login_page.dart';
-import 'package:flutter_application_1/globals/my_cart.dart';
-import 'package:flutter_application_1/globals/products_card.dart';
-import 'package:flutter_application_1/globals/profile_page.dart';
-import 'package:flutter_application_1/globals/search_page.dart';
-import 'package:flutter_application_1/globals/shopping_cart.dart';
-import 'package:flutter_application_1/home_page_2.dart';
+import 'package:flutter_application_1/globals/pages/check_out_page.dart';
+import 'package:flutter_application_1/globals/pages/login_page.dart';
+import 'package:flutter_application_1/globals/pages/my_cart.dart';
+import 'package:flutter_application_1/globals/structure/products_card.dart';
+import 'package:flutter_application_1/globals/pages/profile_page.dart';
+import 'package:flutter_application_1/globals/pages/search_page.dart';
+import 'package:flutter_application_1/globals/structure/shopping_cart.dart';
+import 'package:flutter_application_1/globals/pages/home_page_2.dart';
 import 'package:provider/provider.dart';
 import 'package:sidebarx/sidebarx.dart';
 

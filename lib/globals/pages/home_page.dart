@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/globals/check_out_page.dart';
+import 'package:flutter_application_1/globals/pages/check_out_page.dart';
 import 'package:flutter_application_1/globals/list_of_products/list_of_dresses.dart';
 import 'package:flutter_application_1/globals/list_of_products/list_of_fleece.dart';
 import 'package:flutter_application_1/globals/list_of_products/list_of_shirt.dart';
@@ -9,28 +9,26 @@ import 'package:flutter_application_1/globals/list_of_products/list_of_sweaters.
 import 'package:flutter_application_1/globals/list_of_products/list_of_ties.dart';
 import 'package:flutter_application_1/globals/list_of_products/list_of_tracksuits.dart';
 import 'package:flutter_application_1/globals/list_of_products/list_of_trouser.dart';
-import 'package:flutter_application_1/globals/login_page.dart';
-import 'package:flutter_application_1/globals/my_cart.dart';
-import 'package:flutter_application_1/globals/ordered_products_provider.dart';
-import 'package:flutter_application_1/globals/products_card.dart';
-import 'package:flutter_application_1/globals/profile_page.dart';
-import 'package:flutter_application_1/globals/search_page.dart';
-import 'package:flutter_application_1/globals/shopping_cart.dart';
-import 'package:flutter_application_1/globals/signup_page.dart';
+import 'package:flutter_application_1/globals/pages/login_page.dart';
+import 'package:flutter_application_1/globals/pages/my_cart.dart';
+import 'package:flutter_application_1/globals/structure/ordered_products_provider.dart';
+import 'package:flutter_application_1/globals/structure/products_card.dart';
+import 'package:flutter_application_1/globals/pages/profile_page.dart';
+import 'package:flutter_application_1/globals/pages/search_page.dart';
+import 'package:flutter_application_1/globals/structure/shopping_cart.dart';
+import 'package:flutter_application_1/globals/pages/signup_page.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sidebarx/sidebarx.dart';
-import 'globals/featured_products.dart';
+import '../structure/featured_products.dart';
 
 List<Product> productList = productList;
 
 class HomePage extends StatefulWidget {
-  
-
+  final String orderNumber;
   const HomePage({
-    
     Key? key,
- 
+    required this.orderNumber,
   }) : super(key: key);
 
   @override
@@ -41,8 +39,9 @@ class _HomePageState extends State<HomePage> {
   @override
   final SidebarXController _sidebarXController =
       SidebarXController(selectedIndex: 0);
- 
+
   final ShoppingCart myShoppingCart = ShoppingCart();
+  
   @override
   void initState() {
     super.initState();
@@ -53,8 +52,6 @@ class _HomePageState extends State<HomePage> {
       orderedProductsProvider.updateOrderedProducts(orderedProducts);
     });
   }
-
-  
 
   TextEditingController searchController = TextEditingController();
   String searchText = '';
@@ -93,6 +90,7 @@ class _HomePageState extends State<HomePage> {
                       MaterialPageRoute(
                           builder: (context) => MyCartPage(
                                 shoppingCart: myShoppingCart,
+                                orderNumber: widget.orderNumber,
                               )));
                 },
               ),
@@ -107,6 +105,9 @@ class _HomePageState extends State<HomePage> {
                       MaterialPageRoute(
                           builder: (context) => CheckoutPage(
                                 shoppingCart: myShoppingCart,
+                                onContinueShopping: () {
+                                  Navigator.pop(context);
+                                },
                               )));
                 },
               ),
@@ -244,44 +245,41 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       children: [
                         RowOfFeaturedProducts(
-                          shoppingCart: myShoppingCart,
-                          
-                          products: shirtProducts
-                        ),
+                            shoppingCart: myShoppingCart,
+                            products: shirtProducts,
+                            orderNumber: widget.orderNumber,),
                         RowOfFeaturedProducts(
-                          shoppingCart: myShoppingCart,
-                          
-                          products: trouserProducts
-                        ),
+                            shoppingCart: myShoppingCart,
+                            products: trouserProducts,
+                            orderNumber: widget.orderNumber,),
                         RowOfFeaturedProducts(
-                          shoppingCart: myShoppingCart,
-                          products: shortsProducts
-                        ),
+                            shoppingCart: myShoppingCart,
+                            products: shortsProducts,
+                            orderNumber: widget.orderNumber,),
                         RowOfFeaturedProducts(
-                          shoppingCart: myShoppingCart,
-                          products: tracksuitsProducts
-                        ),
+                            shoppingCart: myShoppingCart,
+                            products: tracksuitsProducts,
+                            orderNumber: widget.orderNumber,),
                         RowOfFeaturedProducts(
-                          shoppingCart: myShoppingCart,
-                          products: fleeceJacketsProducts
-                        ),
+                            shoppingCart: myShoppingCart,
+                            products: fleeceJacketsProducts,
+                            orderNumber: widget.orderNumber,),
                         RowOfFeaturedProducts(
-                          shoppingCart: myShoppingCart,
-                          products: sweatersProducts
-                        ),
+                            shoppingCart: myShoppingCart,
+                            products: sweatersProducts,
+                            orderNumber: widget.orderNumber,),
                         RowOfFeaturedProducts(
-                          shoppingCart: myShoppingCart,
-                          products: dressesProduct
-                        ),
+                            shoppingCart: myShoppingCart,
+                            products: dressesProduct,
+                            orderNumber: widget.orderNumber,),
                         RowOfFeaturedProducts(
-                          shoppingCart: myShoppingCart,
-                          products: skirtsProducts
-                        ),
+                            shoppingCart: myShoppingCart,
+                            products: skirtsProducts,
+                            orderNumber: widget.orderNumber,),
 
                         RowOfFeaturedProducts(
-                          shoppingCart: myShoppingCart,
-                          products: tiesProducts
-                        ),
+                            shoppingCart: myShoppingCart,
+                            products: tiesProducts, orderNumber: widget.orderNumber,),
                         // Add more RowOfFeaturedProducts as needed
                       ],
                     ),

@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/globals/products_card.dart';
-import 'package:flutter_application_1/globals/shopping_cart.dart';
+import 'package:flutter_application_1/globals/structure/products_card.dart';
+import 'package:flutter_application_1/globals/structure/shopping_cart.dart';
 
 class CartTotals extends StatelessWidget {
   final ShoppingCart shoppingCart;

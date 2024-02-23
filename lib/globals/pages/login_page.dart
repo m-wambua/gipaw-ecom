@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/globals/ordered_products_provider.dart';
-import 'package:flutter_application_1/globals/products_card.dart';
-import 'package:flutter_application_1/globals/signup_page.dart';
-import 'package:flutter_application_1/home_page.dart';
+import 'package:flutter_application_1/globals/structure/ordered_products_provider.dart';
+import 'package:flutter_application_1/globals/structure/products_card.dart';
+import 'package:flutter_application_1/globals/pages/signup_page.dart';
+import 'package:flutter_application_1/globals/pages/home_page.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -27,11 +27,13 @@ class UserProvider extends ChangeNotifier {
 }
 
 class LoginPage extends StatefulWidget {
+  
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  
   final _formKey = GlobalKey<FormState>();
   String _usernameOrEmail = '';
   String _password = '';
@@ -136,6 +138,7 @@ class _LoginPageState extends State<LoginPage> {
 
       if (response.statusCode == 200) {
         //Successful login
+        String orderNumber;
         final responseData = jsonDecode(response.body);
         String userLastName = '';
         userLastName = responseData['last_name'];
@@ -155,6 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => HomePage(
+                                  orderNumber: '',
                                       
                                     )));
                       },

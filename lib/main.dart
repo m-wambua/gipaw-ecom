@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/globals/checkout_data.dart';
-import 'package:flutter_application_1/globals/login_page.dart';
-import 'package:flutter_application_1/globals/ordered_products_provider.dart';
-import 'package:flutter_application_1/globals/products_card.dart';
-import 'package:flutter_application_1/globals/shopping_cart.dart';
-import 'package:flutter_application_1/home_page.dart';
-import 'package:flutter_application_1/home_page_2.dart';
+import 'package:flutter_application_1/globals/structure/checkout_data.dart';
+import 'package:flutter_application_1/globals/pages/login_page.dart';
+import 'package:flutter_application_1/globals/structure/ordered_products_provider.dart';
+import 'package:flutter_application_1/globals/structure/products_card.dart';
+import 'package:flutter_application_1/globals/structure/shopping_cart.dart';
+import 'package:flutter_application_1/globals/pages/home_page.dart';
+import 'package:flutter_application_1/globals/pages/home_page_2.dart';
 import 'package:provider/provider.dart';
   
   void main() {
@@ -53,7 +53,7 @@ debugShowCheckedModeBanner: false,
 
             ),
             
-        home:  HomePage(),
+        home:  HomePage(orderNumber: '',),
       ),
     );
   }

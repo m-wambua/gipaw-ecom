@@ -1,7 +1,7 @@
 
 
 import 'dart:convert';
-import 'package:flutter_application_1/globals/products_card.dart';
+import 'package:flutter_application_1/globals/structure/products_card.dart';
 import 'package:http/http.dart' as http;
 
 void sendOrderData(List<OrderedProduct> orderedProducts, String orderNumber, double grandTotal) async {

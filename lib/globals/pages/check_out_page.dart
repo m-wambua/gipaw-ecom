@@ -1,31 +1,36 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/globals/products_card.dart';
-import 'package:flutter_application_1/globals/shopping_cart.dart';
+import 'package:flutter_application_1/globals/structure/products_card.dart';
+import 'package:flutter_application_1/globals/structure/shopping_cart.dart';
 
-class CheckoutPage extends StatelessWidget {
+class CheckoutPage extends StatefulWidget {
   final ShoppingCart shoppingCart;
+  final VoidCallback onContinueShopping;
 
   const CheckoutPage({
     Key? key,
     required this.shoppingCart,
+    required this.onContinueShopping,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    // Get the list of ordered products from the shopping cart
-    final List<OrderedProduct> orderedProducts =
-        shoppingCart.getOrderedProducts();
-    //Generate a random alphanumeric order number
-    String orderNumber = generateOrderNumber();
+  _CheckoutPageState createState() => _CheckoutPageState();
+}
 
-    // Calculate the grand total by summing up the total Prices of all ordered products
-    double grandTotal = orderedProducts.fold<double>(
-      0,
-      (previousValue, orderedProduct) =>
-          previousValue + orderedProduct.totalPrice,
-    );
+class _CheckoutPageState extends State<CheckoutPage> {
+  String orderNumber = '';
+  double grandTotal = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    // Generate order number and calculate grand total when the widget is initialized
+    orderNumber = generateOrderNumber();
+    grandTotal = calculateGrandTotal();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Checkout'),
@@ -34,9 +39,10 @@ class CheckoutPage extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: orderedProducts.length,
+              itemCount: widget.shoppingCart.getOrderedProducts().length,
               itemBuilder: (context, index) {
-                final orderedProduct = orderedProducts[index];
+                final orderedProduct =
+                    widget.shoppingCart.getOrderedProducts()[index];
                 return ListTile(
                   title: Text(orderedProduct.product.name),
                   subtitle: Column(
@@ -46,15 +52,13 @@ class CheckoutPage extends StatelessWidget {
                       Text('Size: ${orderedProduct.size}'),
                       Text(
                           'Price: \$${orderedProduct.totalPrice.toStringAsFixed(2)}'),
-                      Text(
-                        'Order Number: $orderNumber',
-                      ),
+                      Text('Order Number: $orderNumber'),
                     ],
                   ),
                   trailing: IconButton(
                     icon: Icon(Icons.delete),
                     onPressed: () {
-                      // Implement the logic to remove the ordered product
+                      // Remove the ordered product
                       removeProduct(orderedProduct);
                     },
                   ),
@@ -72,7 +76,9 @@ class CheckoutPage extends StatelessWidget {
                 Text('Total Price: \$${grandTotal.toStringAsFixed(2)}'),
               ],
             ),
-          )
+          ),
+
+          ElevatedButton(onPressed: widget.onContinueShopping, child: Text('Continue Shopping'))
         ],
       ),
     );
@@ -85,7 +91,25 @@ class CheckoutPage extends StatelessWidget {
         10, (_) => chars.codeUnitAt(random.nextInt(chars.length))));
   }
 
+  double calculateGrandTotal() {
+    return widget.shoppingCart.getOrderedProducts().fold<double>(
+        0,
+        (previousValue, orderedProduct) =>
+            previousValue + orderedProduct.totalPrice);
+  }
+
   void removeProduct(OrderedProduct orderedProduct) {
-    shoppingCart.removeOrderedProduct(orderedProduct);
+    setState(() {
+      widget.shoppingCart.removeOrderedProduct(orderedProduct);
+      grandTotal = calculateGrandTotal();
+    });
+
+    // Show a SnackBar to indicate that the item has been deleted
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('${orderedProduct.product.name} deleted'),
+        duration: Duration(seconds: 2),
+      ),
+    );
   }
 }

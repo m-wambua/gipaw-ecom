@@ -1,4 +1,4 @@
-import 'package:flutter_application_1/globals/products_card.dart';
+import 'package:flutter_application_1/globals/structure/products_card.dart';
 
 List<Product> skirtsProducts = [
 Product(

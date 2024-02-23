@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/globals/products_card.dart';
+import 'package:flutter_application_1/globals/structure/products_card.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ShoppingCart extends ChangeNotifier {

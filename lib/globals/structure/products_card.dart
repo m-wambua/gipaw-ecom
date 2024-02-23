@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_application_1/globals/product_details-page.dart';
-import 'package:flutter_application_1/globals/shopping_cart.dart';
+import 'package:flutter_application_1/globals/pages/product_details-page.dart';
+import 'package:flutter_application_1/globals/structure/shopping_cart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Product {
@@ -18,8 +18,6 @@ class Product {
       required this.size});
   //Getter method for the name property
   String get productName => name;
-
-  
 }
 
 class Range {
@@ -56,21 +54,23 @@ class CounterNotifier extends ChangeNotifier {
 
 class OrderedProduct {
   final Product product;
+  final String orderNumber;
   final int quantity;
   final String size;
   final double totalPrice;
   OrderedProduct(
       {required this.product,
+      required this.orderNumber,
       required this.quantity,
       required this.size,
       required this.totalPrice});
 
-        Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson() {
     return {
       'name': product,
       'price': totalPrice,
       'quantity': quantity,
-      'size':size,
+      'size': size,
     };
   }
 
@@ -80,22 +80,24 @@ class OrderedProduct {
       totalPrice: json['price'],
       quantity: json['quantity'],
       size: json['size'],
+      orderNumber: json['orderNumber']
     );
   }
 }
 
-
-
-
 class ProductCard extends StatelessWidget {
   final Product product;
-  
+  final String orderNumber;
+
   final ShoppingCart
       shoppingCart; // Pass the shopping cart instance to the product card
 
-  const ProductCard(
-      {Key? key, required this.product, required this.shoppingCart, })
-      : super(key: key);
+  const ProductCard({
+    Key? key,
+    required this.product,
+    required this.shoppingCart,
+    required this.orderNumber,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +109,7 @@ class ProductCard extends StatelessWidget {
             builder: (context) => ProductDetailsPage(
               product: product,
               shoppingCart: shoppingCart,
-              
+              orderNumber: orderNumber,
             ),
           ),
         );

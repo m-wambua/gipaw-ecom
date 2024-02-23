@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/globals/check_out_page.dart';
-import 'package:flutter_application_1/globals/checkoutpage_2.dart';
-import 'package:flutter_application_1/globals/products_card.dart';
-import 'package:flutter_application_1/globals/shopping_cart.dart';
+import 'package:flutter_application_1/globals/pages/check_out_page.dart';
+import 'package:flutter_application_1/globals/pages/checkoutpage_2.dart';
+import 'package:flutter_application_1/globals/structure/products_card.dart';
+import 'package:flutter_application_1/globals/structure/shopping_cart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   final Product product;
   final ShoppingCart shoppingCart;
-  
+  final String orderNumber;
 
-  const ProductDetailsPage(
-      {Key? key, required this.product, required this.shoppingCart, })
-      : super(key: key);
+  const ProductDetailsPage({
+    Key? key,
+    required this.product,
+    required this.shoppingCart,
+    required this.orderNumber,
+  }) : super(key: key);
 
   @override
   _ProductDetailsPageState createState() => _ProductDetailsPageState();
@@ -161,13 +164,18 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                 ? selectedSize.toString()
                                 : 'N/A',
                             totalPrice: calculatedFinalPrice(),
+                            orderNumber: widget.orderNumber
                           );
                           widget.shoppingCart.addProduct(orderedProduct);
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    CheckoutPage(shoppingCart: widget.shoppingCart)),
+                                builder: (context) => CheckoutPage(
+                                      shoppingCart: widget.shoppingCart,
+                                      onContinueShopping: () {
+                                        Navigator.of(context).popUntil((route) => route.isFirst);
+                                      },
+                                    )),
                           );
                           // Handle the onPressed event for the "Add to Cart" button
                         },

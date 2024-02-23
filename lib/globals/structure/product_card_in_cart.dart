@@ -1,54 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/globals/cart_totals.dart';
-import 'package:flutter_application_1/globals/check_out_page.dart';
-import 'package:flutter_application_1/globals/product_details-page.dart';
-import 'package:flutter_application_1/globals/products_card.dart';
-import 'package:flutter_application_1/globals/shopping_cart.dart';
+import 'package:flutter_application_1/globals/pages/product_details-page.dart';
+import 'package:flutter_application_1/globals/structure/products_card.dart';
+import 'package:flutter_application_1/globals/structure/shopping_cart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-class MyCartPage extends StatelessWidget {
-  final ShoppingCart shoppingCart;
-  
-
-  const MyCartPage({Key? key, required this.shoppingCart}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('My WishList'),
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: shoppingCart.items.length,
-                itemBuilder: (context, index) {
-                  final product = shoppingCart.items[index];
-                  return ProductCardInCart(
-                    product: product,
-                    shoppingCart: shoppingCart,
-                    
-                  );
-                },
-              ),
-            ),
-            CartTotals(shoppingCart: shoppingCart),
-          ],
-        ));
-  }
-}
 
 class ProductCardInCart extends StatelessWidget {
   final Product product;
   final ShoppingCart shoppingCart;
-  
+  final String orderNumber;
 
   const ProductCardInCart({
     Key? key,
     required this.product,
     required this.shoppingCart,
-    
+    required this.orderNumber,
   }) : super(key: key);
 
   @override
@@ -61,7 +26,7 @@ class ProductCardInCart extends StatelessWidget {
                   builder: (context) => ProductDetailsPage(
                         product: product,
                         shoppingCart: shoppingCart,
-                        
+                        orderNumber: orderNumber,
                       )));
         },
         child: Container(
@@ -73,9 +38,15 @@ class ProductCardInCart extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AspectRatio(
-                  aspectRatio: 16 / 9,
+                  aspectRatio: 4 / 3,
                   child: Container(
-                    color: Colors.grey, // Placeholder for product image
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(
+                            product.imageUrl), // Use imageUrl from Product
+                        fit: BoxFit.cover,
+                      ),
+                    ), // Placeholder for product image
                   ),
                 ),
                 Padding(
@@ -109,9 +80,22 @@ class ProductCardInCart extends StatelessWidget {
                         },
                         child: const Row(
                           mainAxisSize: MainAxisSize.min,
-                          children: [Text('Remove from WishList')],
+                          children: [Text('Remove from cart ==')],
                         ),
                       ),
+                      const SizedBox(height: 10),
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProductDetailsPage(
+                                          product: product,
+                                          shoppingCart: shoppingCart,
+                                          orderNumber: orderNumber,
+                                        )));
+                          },
+                          child: const Text('Congigure your item'))
                     ],
                   ),
                 ),
