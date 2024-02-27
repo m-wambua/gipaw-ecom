@@ -18,6 +18,15 @@ class Product {
       required this.size});
   //Getter method for the name property
   String get productName => name;
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'price': price.toString(),
+      'size': size.toString(),
+      'imageUrl':imageUrl,
+      
+    };
+  }
 }
 
 class Range {
@@ -76,18 +85,18 @@ class OrderedProduct {
 
   factory OrderedProduct.fromJson(Map<String, dynamic> json) {
     return OrderedProduct(
-      product: json['name'],
-      totalPrice: json['price'],
-      quantity: json['quantity'],
-      size: json['size'],
-      orderNumber: json['orderNumber']
-    );
+        product: json['name'],
+        totalPrice: json['price'],
+        quantity: json['quantity'],
+        size: json['size'],
+        orderNumber: json['orderNumber']);
   }
 }
 
 class ProductCard extends StatelessWidget {
   final Product product;
   final String orderNumber;
+  final int userId;
 
   final ShoppingCart
       shoppingCart; // Pass the shopping cart instance to the product card
@@ -97,6 +106,7 @@ class ProductCard extends StatelessWidget {
     required this.product,
     required this.shoppingCart,
     required this.orderNumber,
+    required this.userId,
   }) : super(key: key);
 
   @override
@@ -107,6 +117,7 @@ class ProductCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => ProductDetailsPage(
+              userId: userId,
               product: product,
               shoppingCart: shoppingCart,
               orderNumber: orderNumber,

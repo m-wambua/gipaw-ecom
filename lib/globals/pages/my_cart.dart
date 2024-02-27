@@ -9,9 +9,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 class MyCartPage extends StatelessWidget {
   final ShoppingCart shoppingCart;
   final String orderNumber;
+  final int userId;
 
   const MyCartPage(
-      {Key? key, required this.shoppingCart, required this.orderNumber})
+      {Key? key, required this.shoppingCart, required this.orderNumber, required this.userId})
       : super(key: key);
 
   @override
@@ -39,6 +40,7 @@ class MyCartPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => ProductDetailsPage(
+                        userId: userId,
                         shoppingCart: shoppingCart,
                         product: product,
                         orderNumber: orderNumber,
@@ -58,12 +60,14 @@ class ProductCardInCart extends StatelessWidget {
   final Product product;
   final ShoppingCart shoppingCart;
   final String orderNumber;
+final int userId;
 
   const ProductCardInCart({
     Key? key,
     required this.product,
     required this.shoppingCart,
     required this.orderNumber,
+    required this.userId,
   }) : super(key: key);
 
   @override
@@ -74,6 +78,7 @@ class ProductCardInCart extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) => ProductDetailsPage(
+                    userId: userId,
                         product: product,
                         shoppingCart: shoppingCart,
                         orderNumber: orderNumber,

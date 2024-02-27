@@ -1,17 +1,27 @@
-
-
 import 'dart:convert';
 import 'package:flutter_application_1/globals/structure/products_card.dart';
 import 'package:http/http.dart' as http;
 
-void sendOrderData(List<OrderedProduct> orderedProducts, String orderNumber, double grandTotal) async {
-  final Uri uri = Uri.parse('http://localhost:3000/api/orders');
+void sendOrderData(List<OrderedProduct> orderedProducts, String orderNumber,
+    double grandTotal, int userId) async {
+  final Uri uri = Uri.parse('http://127.0.0.1:8000/orders/');
+  List<Map<String, dynamic>> orderedProductsData = [];
+  for (var product in orderedProducts) {
+    orderedProductsData.add({
+      'name': product.product.name,
+      'quantity':product.quantity,
+      'size':product.size,
+      'total_price':product.totalPrice,
+    });
+  }
 
   // Prepare the order data as a JSON object
   final Map<String, dynamic> orderData = {
-    'orderedProducts': orderedProducts.map((product) => product.toJson()).toList(),
-    'orderNumber': orderNumber,
-    'grandTotal': grandTotal,
+    'user_id': userId,
+    'order_number': orderNumber,
+    'grand_total': grandTotal,
+    'ordered_products':
+       orderedProductsData,
   };
 
   // Send the order data to the server
@@ -28,5 +38,16 @@ void sendOrderData(List<OrderedProduct> orderedProducts, String orderNumber, dou
     print('Order data sent successfully');
   } else {
     print('Failed to send order data: ${response.statusCode}');
+  }
+  print(userId);
+  print(orderNumber);
+  print(grandTotal);
+  print('Ordered Products:');
+  for (var product in orderedProducts) {
+    print('Name: ${product.product.name}');
+    print('Quantity: ${product.quantity}');
+    print('Size: ${product.size}');
+    print('Total Price: ${product.totalPrice}');
+    print('---');
   }
 }

@@ -1,16 +1,18 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/globals/services/send_order_data.dart';
 import 'package:flutter_application_1/globals/structure/products_card.dart';
 import 'package:flutter_application_1/globals/structure/shopping_cart.dart';
 
 class CheckoutPage extends StatefulWidget {
   final ShoppingCart shoppingCart;
   final VoidCallback onContinueShopping;
-
+  final int userId;
   const CheckoutPage({
     Key? key,
     required this.shoppingCart,
     required this.onContinueShopping,
+    required this.userId,
   }) : super(key: key);
 
   @override
@@ -78,7 +80,19 @@ class _CheckoutPageState extends State<CheckoutPage> {
             ),
           ),
 
-          ElevatedButton(onPressed: widget.onContinueShopping, child: Text('Continue Shopping'))
+          ElevatedButton(
+              onPressed: widget.onContinueShopping,
+              child: Text('Continue Shopping')),
+          const SizedBox(
+            height: 10,
+          ),
+          ElevatedButton(
+              onPressed: () {
+                //Send order data when the checkout button is pressed
+                sendOrderData(widget.shoppingCart.orderedProducts,
+                    orderNumber, grandTotal, widget.userId);
+              },
+              child: Text('Checkout'))
         ],
       ),
     );

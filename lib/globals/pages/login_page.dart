@@ -13,6 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class UserProvider extends ChangeNotifier {
   bool isAuthenticated = false;
   late String userLastName = '';
+  late int userId = 0;
 
   void loginUser(String lastName) {
     isAuthenticated = true;
@@ -27,17 +28,15 @@ class UserProvider extends ChangeNotifier {
 }
 
 class LoginPage extends StatefulWidget {
-  
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  
   final _formKey = GlobalKey<FormState>();
   String _usernameOrEmail = '';
   String _password = '';
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,7 +140,9 @@ class _LoginPageState extends State<LoginPage> {
         String orderNumber;
         final responseData = jsonDecode(response.body);
         String userLastName = '';
+        
         userLastName = responseData['last_name'];
+        int userId = responseData['user_id'];
         final userProvider = Provider.of<UserProvider>(context, listen: false);
         userProvider.loginUser(userLastName);
 
@@ -158,8 +159,8 @@ class _LoginPageState extends State<LoginPage> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => HomePage(
-                                  orderNumber: '',
-                                      
+                                      orderNumber: '',
+                                      userId:userId
                                     )));
                       },
                       child: Text('Ok'))

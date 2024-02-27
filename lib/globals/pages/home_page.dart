@@ -26,9 +26,11 @@ List<Product> productList = productList;
 
 class HomePage extends StatefulWidget {
   final String orderNumber;
+  final int userId;
   const HomePage({
     Key? key,
     required this.orderNumber,
+    required this.userId,
   }) : super(key: key);
 
   @override
@@ -41,7 +43,7 @@ class _HomePageState extends State<HomePage> {
       SidebarXController(selectedIndex: 0);
 
   final ShoppingCart myShoppingCart = ShoppingCart();
-  
+
   @override
   void initState() {
     super.initState();
@@ -89,6 +91,7 @@ class _HomePageState extends State<HomePage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => MyCartPage(
+                            userId:widget.userId,
                                 shoppingCart: myShoppingCart,
                                 orderNumber: widget.orderNumber,
                               )));
@@ -104,9 +107,11 @@ class _HomePageState extends State<HomePage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => CheckoutPage(
+                            userId: widget.userId,
                                 shoppingCart: myShoppingCart,
                                 onContinueShopping: () {
                                   Navigator.pop(context);
+                                  
                                 },
                               )));
                 },
@@ -245,41 +250,60 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       children: [
                         RowOfFeaturedProducts(
-                            shoppingCart: myShoppingCart,
-                            products: shirtProducts,
-                            orderNumber: widget.orderNumber,),
+                          userId: widget.userId,
+                          shoppingCart: myShoppingCart,
+                          products: shirtProducts,
+                          orderNumber: widget.orderNumber,
+                        ),
                         RowOfFeaturedProducts(
-                            shoppingCart: myShoppingCart,
-                            products: trouserProducts,
-                            orderNumber: widget.orderNumber,),
+                           userId: widget.userId,
+                          shoppingCart: myShoppingCart,
+                          products: trouserProducts,
+                          orderNumber: widget.orderNumber,
+                        ),
                         RowOfFeaturedProducts(
-                            shoppingCart: myShoppingCart,
-                            products: shortsProducts,
-                            orderNumber: widget.orderNumber,),
+                           userId: widget.userId,
+                          shoppingCart: myShoppingCart,
+                          products: shortsProducts,
+                          orderNumber: widget.orderNumber,
+                        ),
                         RowOfFeaturedProducts(
-                            shoppingCart: myShoppingCart,
-                            products: tracksuitsProducts,
-                            orderNumber: widget.orderNumber,),
+                           userId: widget.userId,
+                          shoppingCart: myShoppingCart,
+                          products: tracksuitsProducts,
+                          orderNumber: widget.orderNumber,
+                        ),
                         RowOfFeaturedProducts(
-                            shoppingCart: myShoppingCart,
-                            products: fleeceJacketsProducts,
-                            orderNumber: widget.orderNumber,),
+                           userId: widget.userId,
+                          shoppingCart: myShoppingCart,
+                          products: fleeceJacketsProducts,
+                          orderNumber: widget.orderNumber,
+                        ),
                         RowOfFeaturedProducts(
-                            shoppingCart: myShoppingCart,
-                            products: sweatersProducts,
-                            orderNumber: widget.orderNumber,),
+                           userId: widget.userId,
+                          shoppingCart: myShoppingCart,
+                          products: sweatersProducts,
+                          orderNumber: widget.orderNumber,
+                        ),
                         RowOfFeaturedProducts(
-                            shoppingCart: myShoppingCart,
-                            products: dressesProduct,
-                            orderNumber: widget.orderNumber,),
+                           userId: widget.userId,
+                          shoppingCart: myShoppingCart,
+                          products: dressesProduct,
+                          orderNumber: widget.orderNumber,
+                        ),
                         RowOfFeaturedProducts(
-                            shoppingCart: myShoppingCart,
-                            products: skirtsProducts,
-                            orderNumber: widget.orderNumber,),
+                           userId: widget.userId,
+                          shoppingCart: myShoppingCart,
+                          products: skirtsProducts,
+                          orderNumber: widget.orderNumber,
+                        ),
 
                         RowOfFeaturedProducts(
-                            shoppingCart: myShoppingCart,
-                            products: tiesProducts, orderNumber: widget.orderNumber,),
+                           userId: widget.userId,
+                          shoppingCart: myShoppingCart,
+                          products: tiesProducts,
+                          orderNumber: widget.orderNumber,
+                        ),
                         // Add more RowOfFeaturedProducts as needed
                       ],
                     ),

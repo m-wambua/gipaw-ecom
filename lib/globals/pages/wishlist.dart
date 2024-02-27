@@ -7,8 +7,11 @@ import 'package:flutter_application_1/globals/structure/shopping_cart.dart';
 class WishList extends StatelessWidget {
   final ShoppingCart shoppingCart;
   final String orderNumber;
+  final int userId;
 
-  const WishList({Key? key, required this.shoppingCart, required this.orderNumber}) : super(key: key);
+  const WishList(
+      {Key? key, required this.shoppingCart, required this.orderNumber, required this.userId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +45,7 @@ class WishList extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => ProductDetailsPage(
+                              userId: userId,
                               shoppingCart: shoppingCart,
                               product: product,
                               orderNumber: orderNumber,

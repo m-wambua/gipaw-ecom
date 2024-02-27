@@ -14,8 +14,10 @@ import 'package:flutter_application_1/globals/structure/shopping_cart.dart';
 class HomePageDetails extends StatelessWidget {
   final ShoppingCart shoppingCart;
   final String orderNummber;
+  final int userId;
 
-  const HomePageDetails({Key? key, required this.shoppingCart, required this.orderNummber})
+  const HomePageDetails(
+      {Key? key, required this.shoppingCart, required this.orderNummber, required this.userId})
       : super(key: key);
 
   @override
@@ -36,51 +38,59 @@ class HomePageDetails extends StatelessWidget {
               child: Column(
                 children: [
                   RowOfFeaturedProducts(
+                    userId: userId,
                     shoppingCart: shoppingCart,
                     products: shirtProducts,
                     orderNumber: orderNummber,
                   ),
                   RowOfFeaturedProducts(
+                    userId: userId,
                     shoppingCart: shoppingCart,
                     products: trouserProducts,
                     orderNumber: orderNummber,
                   ),
                   RowOfFeaturedProducts(
+                    userId: userId,
                     shoppingCart: shoppingCart,
                     products: shortsProducts,
                     orderNumber: orderNummber,
                   ),
                   RowOfFeaturedProducts(
+                    userId: userId,
                     shoppingCart: shoppingCart,
                     products: tracksuitsProducts,
                     orderNumber: orderNummber,
                   ),
                   RowOfFeaturedProducts(
+                    userId: userId,
                     shoppingCart: shoppingCart,
                     products: fleeceJacketsProducts,
                     orderNumber: orderNummber,
                   ),
                   RowOfFeaturedProducts(
+                    userId: userId,
                     shoppingCart: shoppingCart,
                     products: sweatersProducts,
                     orderNumber: orderNummber,
                   ),
                   RowOfFeaturedProducts(
+                    userId: userId,
                     shoppingCart: shoppingCart,
                     products: dressesProduct,
                     orderNumber: orderNummber,
                   ),
                   RowOfFeaturedProducts(
+                    userId: userId,
                     shoppingCart: shoppingCart,
                     products: skirtsProducts,
                     orderNumber: orderNummber,
                   ),
                   RowOfFeaturedProducts(
+                    userId: userId,
                     shoppingCart: shoppingCart,
                     products: tiesProducts,
                     orderNumber: orderNummber,
                   ),
-
                 ],
               ),
             ),

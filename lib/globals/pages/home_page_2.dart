@@ -21,11 +21,13 @@ import 'package:flutter_application_1/globals/pages/wishlist.dart';
 class HomePage2 extends StatefulWidget {
   final ShoppingCart myShoppingCart;
   final String orderNumber;
+  final int userId;
 
   const HomePage2({
     Key? key,
     required this.myShoppingCart,
     required this.orderNumber,
+    required this.userId,
   });
   @override
   _HomePage2State createState() => _HomePage2State();
@@ -40,18 +42,22 @@ class _HomePage2State extends State<HomePage2> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) =>
-                HomePageDetails(shoppingCart: widget.myShoppingCart,orderNummber:  widget.orderNumber,)));
+            builder: (context) => HomePageDetails(
+               userId: widget.userId,
+                  shoppingCart: widget.myShoppingCart,
+                  orderNummber: widget.orderNumber,
+                )));
   }
 
   void _navigateToMyCartPage() {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) =>
-                MyCartPage(shoppingCart: widget.myShoppingCart,
-                
-                orderNumber: widget.orderNumber,)));
+            builder: (context) => MyCartPage(
+               userId: widget.userId,
+                  shoppingCart: widget.myShoppingCart,
+                  orderNumber: widget.orderNumber,
+                )));
   }
 
 //Mehtod to Navigate to CheckoutPage
@@ -60,6 +66,7 @@ class _HomePage2State extends State<HomePage2> {
         context,
         MaterialPageRoute(
             builder: (context) => CheckoutPage(
+               userId: widget.userId,
                   shoppingCart: widget.myShoppingCart,
                   onContinueShopping: () {
                     Navigator.pop(context);
@@ -80,11 +87,16 @@ class _HomePage2State extends State<HomePage2> {
           ),
 
           if (_selectedIndex == 0)
-            HomePageDetails(shoppingCart: widget.myShoppingCart, orderNummber: widget.orderNumber,),
+            HomePageDetails(
+               userId: widget.userId,
+              shoppingCart: widget.myShoppingCart,
+              orderNummber: widget.orderNumber,
+            ),
           // HomePageDetails(shoppingCart: widget.myShoppingCart),
 
           if (_selectedIndex == 1)
             WishList(
+               userId: widget.userId,
               shoppingCart: widget.myShoppingCart,
               orderNumber: widget.orderNumber,
             ),

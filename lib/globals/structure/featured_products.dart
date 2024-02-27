@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class RowOfFeaturedProducts extends StatelessWidget {
   final ShoppingCart shoppingCart;
   final String orderNumber;
+  final int userId;
 
   // You need to provide a ShoppingCart instance
 
@@ -17,6 +18,7 @@ class RowOfFeaturedProducts extends StatelessWidget {
     required this.shoppingCart,
     required this.products,
     required this.orderNumber,
+    required this.userId,
   });
 
   @override
@@ -29,6 +31,7 @@ class RowOfFeaturedProducts extends StatelessWidget {
             .length, // Adjust this based on the number of FeaturedProducts per row
         itemBuilder: (context, index) {
           return ProductCard(
+            userId: userId,
             product: products[index], shoppingCart: shoppingCart,orderNumber: orderNumber,
             // Pass the ShoppingCart instance
           );

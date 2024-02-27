@@ -9,12 +9,14 @@ class ProductDetailsPage extends StatefulWidget {
   final Product product;
   final ShoppingCart shoppingCart;
   final String orderNumber;
+  final int userId;
 
   const ProductDetailsPage({
     Key? key,
     required this.product,
     required this.shoppingCart,
     required this.orderNumber,
+    required this.userId,
   }) : super(key: key);
 
   @override
@@ -158,22 +160,23 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         onPressed: () {
                           //Creaye an instance of OrderdProduct with configured values
                           final orderedProduct = OrderedProduct(
-                            product: widget.product,
-                            quantity: selectedQuantity,
-                            size: selectedSize != null
-                                ? selectedSize.toString()
-                                : 'N/A',
-                            totalPrice: calculatedFinalPrice(),
-                            orderNumber: widget.orderNumber
-                          );
+                              product: widget.product,
+                              quantity: selectedQuantity,
+                              size: selectedSize != null
+                                  ? selectedSize.toString()
+                                  : 'N/A',
+                              totalPrice: calculatedFinalPrice(),
+                              orderNumber: widget.orderNumber);
                           widget.shoppingCart.addProduct(orderedProduct);
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => CheckoutPage(
+                                  userId: widget.userId,
                                       shoppingCart: widget.shoppingCart,
                                       onContinueShopping: () {
-                                        Navigator.of(context).popUntil((route) => route.isFirst);
+                                        Navigator.of(context)
+                                            .popUntil((route) => route.isFirst);
                                       },
                                     )),
                           );
