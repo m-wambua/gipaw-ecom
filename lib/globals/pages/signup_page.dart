@@ -186,7 +186,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   height: 20,
                 ),
 
-                 const SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -277,7 +277,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       //validate the form
                       if (_formKey.currentState!.validate()) {
                         //Submit the form
-                        _submitForm();
+                        _submitForm(context);
                       }
                     },
                     child: Text('Sign Up'))
@@ -287,7 +287,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  void _submitForm() async {
+  void _submitForm(BuildContext context) async {
     //Handle form submission here
     // This is where you would typically send the data to your backend
     var formData = {
@@ -305,19 +305,21 @@ class _SignUpPageState extends State<SignUpPage> {
 
     //Make an HTTP POST request to your backend server
     var response = await http.post(
-      Uri.parse('http://127.0.0.1:8000/users/register', ),
-
-        headers: {"Content-Type": "application/json"},
+      Uri.parse(
+        'http://127.0.0.1:8000/users/register',
+      ),
+      headers: {"Content-Type": "application/json"},
       body: jsonEncode(formData),
     );
     if (response.statusCode == 200) {
       //If the request was succesfful, display a success message
       print('Form submitted successful');
+// Navigate back to the login page
+      Navigator.pop(context);
     } else {
       // If the request failed ,display an error message
       print('Error submitting form: ${response.body}');
       print('Response status: ${response.statusCode}');
-
     }
   }
 }

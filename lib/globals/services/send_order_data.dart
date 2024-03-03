@@ -1,17 +1,18 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter_application_1/globals/structure/products_card.dart';
 import 'package:http/http.dart' as http;
 
-void sendOrderData(List<OrderedProduct> orderedProducts, String orderNumber,
-    double grandTotal, int userId) async {
+Future<bool> sendOrderData(List<OrderedProduct> orderedProducts,
+    String orderNumber, double grandTotal, int userId) async {
   final Uri uri = Uri.parse('http://127.0.0.1:8000/orders/');
   List<Map<String, dynamic>> orderedProductsData = [];
   for (var product in orderedProducts) {
     orderedProductsData.add({
       'name': product.product.name,
-      'quantity':product.quantity,
-      'size':product.size,
-      'total_price':product.totalPrice,
+      'quantity': product.quantity,
+      'size': product.size,
+      'total_price': product.totalPrice,
     });
   }
 
@@ -20,8 +21,7 @@ void sendOrderData(List<OrderedProduct> orderedProducts, String orderNumber,
     'user_id': userId,
     'order_number': orderNumber,
     'grand_total': grandTotal,
-    'ordered_products':
-       orderedProductsData,
+    'ordered_products': orderedProductsData,
   };
 
   // Send the order data to the server
@@ -50,4 +50,7 @@ void sendOrderData(List<OrderedProduct> orderedProducts, String orderNumber,
     print('Total Price: ${product.totalPrice}');
     print('---');
   }
+  // Ensure that the functon returns a value in all possible code paths
+
+  return false;// Add this line to handle the case where the function may complete withour returning a value
 }
