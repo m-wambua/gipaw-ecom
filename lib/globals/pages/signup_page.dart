@@ -302,6 +302,13 @@ class _SignUpPageState extends State<SignUpPage> {
       'address_line2': _addressLine2,
       'physical_location': _physicalLocation,
     };
+    // Make an HTTP POST request to check if email already exists
+    /*
+    var response = await http.post(
+        Uri.parse('http://127.o.o.1:8000/users/check_email'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'email': _email}));
+        */
 
     //Make an HTTP POST request to your backend server
     var response = await http.post(
@@ -318,8 +325,29 @@ class _SignUpPageState extends State<SignUpPage> {
       Navigator.pop(context);
     } else {
       // If the request failed ,display an error message
+
       print('Error submitting form: ${response.body}');
       print('Response status: ${response.statusCode}');
+      var responseBody = jsonDecode(response.body);
+      //check if the response contains an error message
+      if (responseBody.containsKey('detail')) {
+        //Display a pop-up with the error message
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Error'),
+                content: Text(responseBody['detail']),
+                actions: <Widget>[
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text('Ok'))
+                ],
+              );
+            });
+      }
     }
   }
 }
